@@ -97,6 +97,12 @@ const renderCharacters = (characters) => {
 document.addEventListener("DOMContentLoaded", async () => {
   console.log(window.location.href.includes);
   if (window.location.href.includes("characterid")) {
+    const buttonBack = document.createElement("button");
+    buttonBack.classList.add("button-back");
+    buttonBack.addEventListener("click", ()=>{
+      history.back();
+    })
+    buttonBack.textContent = "Volver";
     buttonLoad.style.display = "none";
 
     const queryString = window.location.search;
@@ -132,8 +138,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const locationContainer = document.createElement("div");
       const locationTitle = document.createElement("h2");
+      locationTitle.textContent = "Location";
       const location = document.createElement("p");
-      location.textContent = "Unknown";
+      location.textContent = "Location: Unknown";
       const locationType = document.createElement("p");
       const locationDimension = document.createElement("p");
 
@@ -217,10 +224,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       cardBodyExtradataType.textContent = `Specie: ${characterResponse.species}`;
       cardBodyExtradataGender.textContent = `Gender: ${characterResponse.gender}`;
 
-      
-
-      
-
       const species = document.createElement("p");
       species.textContent = `Species: ${characterResponse.species}`;
 
@@ -240,6 +243,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       characterContainer.appendChild(originContainer);
       characterContainer.appendChild(locationContainer);
 
+      mainContainer.appendChild(buttonBack);
       mainContainer.appendChild(characterContainer);
     } catch (error) {
       alertInfo.style.display = "block";
